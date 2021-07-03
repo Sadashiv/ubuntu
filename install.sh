@@ -3,6 +3,7 @@ sudo apt-get update -y
 #update-manager -p #Update the latest version
 #sudo do-release-upgrade #Upgrade the 1.0LTS to 2.0LTS version
 
+
 google_chrome=`dpkg -l google-chrome-stable`
 if [[ $google_chrome =~ "google-chrome-stable" ]];
 then
@@ -28,6 +29,7 @@ then
     echo "Docker already installed `docker --version`"
 else
     ./get-docker-ce.sh
+    sudo apt install docker-scan-plugin
     sudo usermod -aG docker sada
 fi
 
@@ -49,7 +51,7 @@ else
     sudo dpkg -i minikube_latest_amd64.deb
 fi
 
-docker_compose_install=`docker-compose`
+docker_compose_install=`docker-compose` >> /dev/null
 if [[ $? -eq 0 ]];
 then
     echo "docker-compose alread installed `docker-compose version`"
@@ -57,4 +59,22 @@ else
     sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
     sudo chmod +x /usr/local/bin/docker-compose
     sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+fi
+
+maven_install=`dpkg -l mvn`
+if [[ $maven_install =~ "mvn" ]];
+then
+    echo "maven alread installed `mvn --version`"
+else
+    sudo apt install maven -y
+fi
+
+
+gradle_install=`gradle --version`
+if [[ "Gradle" =~ $gradle_install ]];
+then
+    echo "Gradle installed `gradle -version`"
+else
+    wget -c https://downloads.gradle-dn.com/distributions/gradle-7.1.1-all.zip -P /opt
+    unzip /opt/gradle-7.1.1-all.zip -d /opt
 fi
