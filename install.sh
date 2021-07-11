@@ -1,5 +1,6 @@
 #sudo visudoers
-sudo apt-get update -y
+redirect=/dev/null
+sudo apt-get update -y $redirect
 #update-manager -p #Update the latest version
 #sudo do-release-upgrade #Upgrade the 1.0LTS to 2.0LTS version
 
@@ -17,7 +18,7 @@ for installtype in install upgrade
 do
     sudo sudo apt $installtype -y vlc git vim  wget gcc libncursesw5-dev libgdbm-dev libc6-dev libsqlite3-dev tk-dev \
     libssl-dev openssl zlib1g-dev libffi-dev libmysqlclient-dev libsasl2-dev python-dev libldap2-dev libbz2-dev \
-    default-jdk net-tools nginx google-chrome-stable
+    default-jdk net-tools nginx google-chrome-stable tree groovy ssh xpad
 done
 
 #wget -c https://github.com/Sadashiv/interview_questions/blob/master/docker/get-docker-ce.sh
@@ -28,9 +29,10 @@ if [[ $docker_install =~ "docker" ]];
 then
     echo "Docker already installed `docker --version`"
 else
-    ./get-docker-ce.sh
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    ./get-docker.sh
     sudo apt install docker-scan-plugin
-    sudo usermod -aG docker sada
+    sudo usermod -aG docker $USER
 fi
 
 ansible_install=`dpkg -l ansible`
@@ -51,7 +53,7 @@ else
     sudo dpkg -i minikube_latest_amd64.deb
 fi
 
-docker_compose_install=`docker-compose` >> /dev/null
+docker_compose_install=`docker-compose`
 if [[ $? -eq 0 ]];
 then
     echo "docker-compose alread installed `docker-compose version`"
@@ -78,3 +80,12 @@ else
     wget -c https://downloads.gradle-dn.com/distributions/gradle-7.1.1-all.zip -P /opt
     unzip /opt/gradle-7.1.1-all.zip -d /opt
 fi
+
+#Install groovy
+#sudo apt-get install groovy
+
+#curl -s get.sdkman.io | bash /dev/null
+#source "$HOME/.sdkman/bin/sdkman-init.sh"
+#sdk install groovy
+
+
