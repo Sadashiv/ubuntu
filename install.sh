@@ -88,4 +88,11 @@ fi
 #source "$HOME/.sdkman/bin/sdkman-init.sh"
 #sdk install groovy
 
-
+#skypeforlinux_install=`skypeforlinux --version`
+#if [[ "skypeforlinux" =~ $skypeforlinux_install ]];
+#then
+#    echo "skypeforlinux installed "
+#else
+#    wget -c https://go.skype.com/skypeforlinux-64.deb
+#    sudo apt install ./skypeforlinux-64.deb
+#fi
