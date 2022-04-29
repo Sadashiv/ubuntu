@@ -18,7 +18,7 @@ for installtype in install upgrade
 do
     sudo sudo apt $installtype -y vlc git vim  wget gcc libncursesw5-dev libgdbm-dev libc6-dev libsqlite3-dev tk-dev \
     libssl-dev openssl zlib1g-dev libffi-dev libmysqlclient-dev libsasl2-dev python-dev libldap2-dev libbz2-dev \
-    default-jdk net-tools nginx google-chrome-stable tree groovy ssh xpad
+    default-jdk net-tools nginx google-chrome-stable tree groovy ssh xpad curl
 done
 
 #wget -c https://github.com/Sadashiv/interview_questions/blob/master/docker/get-docker-ce.sh
@@ -30,6 +30,7 @@ then
     echo "Docker already installed `docker --version`"
 else
     curl -fsSL https://get.docker.com -o get-docker.sh
+    chmod +x get-docker.sh
     ./get-docker.sh
     sudo apt install docker-scan-plugin
     sudo usermod -aG docker $USER
