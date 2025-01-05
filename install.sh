@@ -17,8 +17,9 @@ fi
 for installtype in install upgrade
 do
     sudo sudo apt $installtype -y vlc git vim  wget gcc libncursesw5-dev libgdbm-dev libc6-dev libsqlite3-dev tk-dev \
-    libssl-dev openssl zlib1g-dev libffi-dev libmysqlclient-dev libsasl2-dev python-dev libldap2-dev libbz2-dev \
-    default-jdk net-tools nginx google-chrome-stable tree groovy ssh xpad curl
+    libssl-dev openssl zlib1g-dev libffi-dev libmysqlclient-dev libsasl2-dev python-dev-is-python3 libldap2-dev libbz2-dev \
+    net-tools nginx google-chrome-stable tree groovy ssh xpad curl
+    #python-dev till ubuntu 20 default-jdk 
 done
 
 #wget -c https://github.com/Sadashiv/interview_questions/blob/master/docker/get-docker-ce.sh
@@ -72,16 +73,14 @@ else
     sudo apt install maven -y
 fi
 
-
-gradle_install=`gradle --version`
-if [[ "Gradle" =~ $gradle_install ]];
-then
-    echo "Gradle installed `gradle -version`"
-else
-    wget -c https://downloads.gradle-dn.com/distributions/gradle-7.1.1-all.zip -P /opt
-    unzip /opt/gradle-7.1.1-all.zip -d /opt
-fi
-
+#gradle_install=`gradle --version`
+#if [[ "Gradle" =~ $gradle_install ]];
+#then
+#    echo "Gradle installed `gradle -version`"
+#else
+#    wget -c https://downloads.gradle-dn.com/distributions/gradle-7.1.1-all.zip -P /opt
+#    unzip /opt/gradle-7.1.1-all.zip -d /opt
+#fi
 #Install groovy
 #sudo apt-get install groovy
 
@@ -97,5 +96,23 @@ fi
 #    wget -c https://go.skype.com/skypeforlinux-64.deb
 #    sudo apt install ./skypeforlinux-64.deb
 #fi
-echo "get software download url"
-apt download --print-uris python3.8
+#echo "get software download url"
+#apt download --print-uris python3.10
+
+#Upgrade to ubuntu 20 to 22
+#sudo apt list –upgradable
+#sudo apt list --upgradable
+#udo apt update && sudo apt upgrade -y
+#sudo apt update && sudo apt upgrade -y
+#lsb_release -a
+#sudo ufw allow 1022/tcp
+#sudo ufw reload
+#sudo ufw status
+
+#Change Propmpt=normal to lts
+#sudo vim /etc/update-manager/release-upgrades
+#sudo apt-mark showhold 
+#kubelet
+#sudo apt-mark unhold kubelet
+#sudo apt update
+#sudo do-release-upgrade
