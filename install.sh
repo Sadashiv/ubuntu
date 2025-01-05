@@ -97,3 +97,5 @@ fi
 #    wget -c https://go.skype.com/skypeforlinux-64.deb
 #    sudo apt install ./skypeforlinux-64.deb
 #fi
+echo "get software download url"
+apt download --print-uris python3.8
